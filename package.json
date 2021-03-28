@@ -1,0 +1,30 @@
+{
+  "name": "mongoose_skeleton",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeders/seed.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongojs": "^3.1.0",
+    "mongoose": "^5.3.16",
+    "morgan": "^1.9.1",
+    "node": "^15.12.0"
+  },
+  "keywords": [],
+  "description": "MongoDB app for tracking workouts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smlisk0630/workout-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smlisk0630/workout-tracker/issues"
+  },
+  "homepage": "https://github.com/smlisk0630/workout-tracker#readme"
+}
