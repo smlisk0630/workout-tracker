@@ -20,7 +20,7 @@ npm install workout-tracker
 ## User Stories
 [placeholder]
 ## Usage
-Can be used to view employees, departments, and roles, and add employees.
+Can be used to view, track, and log exercises and workouts.
 ## Dependencies
 - express
 - mongojs
