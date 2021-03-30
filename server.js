@@ -33,7 +33,7 @@ app.post("/submit", (req, res) => {
     }
   });
 });
-// Retrieve all notes from collection
+// Retrieve all workouts from collection
 app.get("/all", (req, res) => {
   db.workouts.find({}, (error, data) => {
     if (error) {
@@ -60,30 +60,39 @@ app.get("/find/:date", (req, res) => {
 });
 // Update one workout in collection by date
 app.post("/update/:date", (req, res) => {
-    db.workouts.update(
-      {
-        date: mongojs.day(req.params.date)
+  db.workouts.update(
+    {
+      date: mongojs.day(req.params.date),
+    },
+    {
+      $set: {
+        title: req.body.title,
+        exercise: req.body.exercise,
+        modified: Date.now(),
       },
-      {
-        $set: {
-          title: req.body.title,
-          exercise: req.body.exercise,
-          modified: Date.now()
-        }
-      },
-      (error, data) => {
-        if (error) {
-          res.send(error);
-        } else {
-          res.send(data);
-        }
+    },
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
       }
-    );
-  });
+    }
+  );
+});
 // View the combined weight of multiple exercises from the past seven workouts on the stats page.
 app.get("/stats", (req, res) => {
-    res.sendFile(path.join(__dirname + "./public/stats.html"));
+  res.sendFile(path.join(__dirname + "/public/stats.html"));
+  db.workouts.find({}).limit(7,(error, data) => {
+    if (error) {
+        console.log(error);
+      res.send(error);
+    } else {
+        console.log(data);
+      res.json(data);
+    }
   });
+});
 
 app.listen(3000, () => {
   console.log("App running on port 3000!");
