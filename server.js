@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const databaseUrl = "workoutTracker";
+const databaseUrl = "workout";
 const collections = ["workouts"];
 
 const db = mongojs(databaseUrl, collections);
@@ -83,12 +83,15 @@ app.post("/update/:date", (req, res) => {
 // View the combined weight of multiple exercises from the past seven workouts on the stats page.
 app.get("/stats", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/stats.html"));
-  db.workouts.find({}).limit(7,(error, data) => {
+});
+
+app.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({}).limit(7, (error, data) => {
     if (error) {
-        console.log(error);
+      console.log(error);
       res.send(error);
     } else {
-        console.log(data);
+      console.log(data);
       res.json(data);
     }
   });
