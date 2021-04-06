@@ -50,26 +50,35 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+// router.post("api/exercise", (req, res) => {
+
+// });
+
 router.post("/api/workouts", (req, res) => {
   Workout.create(
-    {
-      day: Date.now(),
-    },
-    {
-      $set: {
-        title: req.body.title,
-        exercise: req.body.exercise,
-        modified: Date.now(),
-      },
-    },
-    (error, data) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send(data);
-      }
-    }
-  );
+      {}
+    // {
+    //   day: Date.now(),
+    // },
+    // {
+    //   $set: {
+    //     title: req.body.title,
+    //     exercise: req.body.exercise,
+    //     modified: Date.now(),
+    //   },
+    // },
+    // (error, data) => {
+    //   if (error) {
+    //     res.json(error);
+    //   } else {
+    //     res.json(data);
+    //   }
+    // }
+  ).then(dbworkout => {
+      res.json(dbworkout);
+  }) .catch((err) => {
+      res.json(err);
+  }); 
 });
 
 // Save workout to tracker's collection
@@ -131,6 +140,14 @@ router.post("/update/:date", (req, res) => {
       }
     }
   );
+});
+
+router.put("/api/workouts/:id", ({body,params}, res) => {
+    Workout.findByIdAndUpdate(params.id, {$push:{exercises: body}},{ new: true, runValidators: true }).then(dbworkout => {
+        res.json(dbworkout);
+    }) .catch((err) => {
+        res.json(err);
+    }); 
 });
 
 module.exports = router;
