@@ -18,12 +18,12 @@ This application can be found at https://smlisk0630.github.io/workout-tracker/.
 npm install workout-tracker
 ```
 ## User Stories
-[placeholder]
+![Fitness Tracker Video](/public/assets/fitness-tracker.gif)
 ## Usage
 Can be used to view, track, and log exercises and workouts.
 ## Dependencies
 - express
-- mongojs
+- mongoose
 ## Credits
 - [UNC-Chapel Hill Coding Bootcamp](https://bootcamp.unc.edu/)
 - [Gage Eide, tutor](https://github.com/gage117)
