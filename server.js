@@ -13,10 +13,15 @@ const databaseUrl = "workout";
 const collections = ["workouts"];
 
 //const db = mongoose(databaseUrl, collections);
-mongoose.connect("mongodb://localhost/workout", {
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/workout', 
+  {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
   useFindAndModify: false
-});
+  }
+);
 
 // db.on("error", (error) => {
 //   console.log("Database Error:", error);
